@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('sensor_id')->unsigned()->nullable(false);
+            $table->string('valor')->nullable(false);
+            $table->string('unidade')->nullable(false);
+            $table->dateTime('data_hora')->nullable(false);
+            $table->foreign('sensor_id')->references('id')->on('sensors');
             $table->timestamps();
         });
     }

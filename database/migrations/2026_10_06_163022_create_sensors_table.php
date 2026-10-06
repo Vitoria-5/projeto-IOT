@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('sensors', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('ambiente_id')->unsigned()->nullable(false);
+            $table->string('codigo')->unique();
+            $table->string('tipo')->nullable(false);
+            $table->text('descricao');
+            $table->boolean('status')->default(true);
+            $table->foreign('ambiente_id')->references('id')->on('ambientes');
             $table->timestamps();
         });
     }
